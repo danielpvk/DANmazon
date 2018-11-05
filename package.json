@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/danielpvk/DANmazon#readme",
   "dependencies": {
+    "inquirer": "^6.2.0",
     "mysql": "^2.16.0"
   }
 }
