@@ -59,7 +59,8 @@ function buy(){
          console.log("Something go wrong, purchase not possible.");
     
        }
-       
+       connection.end();
+   
     });
 }
 
@@ -152,7 +153,6 @@ function afterConnection() {
    
    
    
-   //connection.end();
    
   });
 }
