@@ -75,6 +75,67 @@ function addInventory(products)
       
   });
 }
+function addToDatabase(p,price,s,d){
+  var sql="INSERT INTO products (product_name, department_name, price, stock_quantity)  VALUES ("+'"'+p+'"'+","+'"'+d+'"'+","+'"'+price+'"'+","+'"'+s+'"'+");";
+  connection.query(sql,function(err1,res1){
+    if (err1) throw err1;
+     connection.end();
+  });
+}
+
+function addProduct()
+{
+  var product="";
+  var price="";
+  var department="";
+  var stock="";
+  var price="";
+  inquirer.prompt(
+    {
+      type: "input",
+      name: "product",
+      message:"Type the name of the product :"
+    }
+  ).then(function(action){
+        product=action.product;
+        console.log(product);
+        inquirer.prompt(
+          {
+            type: "input",
+            name: "price",
+            message:"Type the price of the product :"
+          }
+        ).then(function(action1){
+            price=action1.price;
+            inquirer.prompt(
+              {
+                type: "input",
+                name: "stock",
+                message:"Type the stock quantity of the product :"
+              }
+            ).then(function(action2){
+                stock=action2.stock;
+                inquirer.prompt(
+                  {
+                    type: "input",
+                    name: "department",
+                    message:"Type the deparment of the product :"
+                  }
+                ).then(function(action3){
+                    department=action3.department;
+                    addToDatabase(product,price,stock,department);
+                });
+
+
+            });
+
+
+
+        });
+  });
+  
+}
+
 
 
 
@@ -128,7 +189,7 @@ function manage()
       case ("1) View all products"):all(1);break;
       case ("2) View products with less than 5 products"):lowInventory();break;
       case ("3) Add inventory to a product"):all(2);break;
-
+      case ("4) Add product"):addProduct();break;
     }
 
 
